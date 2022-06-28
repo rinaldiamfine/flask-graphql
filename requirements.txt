@@ -3,6 +3,8 @@ attrs==21.4.0
 click==7.1.2
 Flask==1.1.4
 Flask-GraphQL==2.0.1
+Flask-RESTful==0.3.9
+Flask-Script==2.0.6
 graphene==2.1.9
 graphene-sqlalchemy==2.3.0
 graphql-core==2.3.2
@@ -20,6 +22,7 @@ promise==2.3
 py==1.11.0
 pyparsing==2.4.7
 pytest==6.1.2
+pytz==2022.1
 Rx==1.6.1
 singledispatch==3.7.0
 six==1.16.0
