@@ -1,16 +1,35 @@
-import imp
-from database import db_session, init_db
+from flask_marshmallow import Marshmallow
 from flask import Flask
-from flask_graphql import GraphQLView
-from app import models
-# from app.employee import api
+from flask_sqlalchemy import SQLAlchemy
+# from app.middleware import ReverseProxied
+# from app.BlueprintLoader import BlueprintLoader
 
 app = Flask(__name__)
+# app.wsgi_app = ReverseProxied(app.wsgi_app)
+
+db = SQLAlchemy(app)
 app.debug = True
 
-from app.employee.schema import schema
-from flask_graphql import GraphQLView
+# failed_imports = []
+# successful_imports = []
+# loader = BlueprintLoader().discover_blueprints_by_pattern()
+# for blueprint in loader:
+#     try:
+#         app.register_blueprint(blueprint)
+#         successful_imports.append(blueprint)
+#     except Exception as e:
+#         failed_imports.append(blueprint)
 
-app.add_url_rule(
-    "/graphql", view_func=GraphQLView.as_view("graphql", schema=schema, graphiql=True)
-)
+from app import models
+
+# @app.teardown_appcontext
+# def shutdown_session(exception=None):
+#     db_session.remove()
+
+
+# from app.employee.schema import schema
+# from flask_graphql import GraphQLView
+
+# app.add_url_rule(
+#     "/graphql", view_func=GraphQLView.as_view("graphql", schema=schema, graphiql=True)
+# )

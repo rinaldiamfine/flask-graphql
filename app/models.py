@@ -1,1 +1,1 @@
-from app.employee.models import *
+from app.campaigns.models import *
