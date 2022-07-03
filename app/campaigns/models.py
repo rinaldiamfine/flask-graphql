@@ -10,3 +10,25 @@ class Campaign(db.Model, TimestampMixin):
     id = db.Column(db.Integer, primary_key=True)
     uuid = db.Column(db.String(255), unique=True)
     slug = db.Column(db.String(500))
+    is_deleted = db.Column(db.Boolean(), default=False)
+
+    def __repr__(self):
+        return '<id : %s>' % (self.id)
+
+    def save(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self
+
+        except Exception as e:
+            db.session.rollback()
+            raise Exception(e)
+
+    def values(self):
+        rv = dict()
+        rv['id'] = self.id
+        rv['uuid'] = self.uuid
+        rv['slug'] = self.slug
+        rv['is_deleted'] = self.is_deleted
+        return rv
